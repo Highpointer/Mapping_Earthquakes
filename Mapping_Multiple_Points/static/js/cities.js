@@ -29,6 +29,12 @@ let cities = [{
     population: 1660272
   },
   {
+    location: [39.9528, -75.1636],
+    city: "Philadelphia",
+    state: "PA",
+    population: 1576251
+  },
+  {
     location: [43.7412, -79.3733],
     city: "Toronto",
     state: "ON",
