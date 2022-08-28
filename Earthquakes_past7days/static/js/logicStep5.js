@@ -116,5 +116,37 @@ L.geoJSON(data, {
     }).addTo(earthquakes);
 
     // Then we add the earthquake layer to our map
-    earthquakes.addTo(map); 
+    earthquakes.addTo(map);
+
+    // Custom Legend Control: https://leafletjs.com/examples/choropleth/
+    let legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+    let div = L.DomUtil.create('div', 'info legend');
+        const magnitudes = [0, 1, 2, 3, 4, 5];
+        const colors = [
+            "#98ee00",
+            "#d4ee00",
+            "#eecc00",
+            "#ee9c00",
+            "#ea822c",
+            "#ea2c2c"
+        ];
+        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        labels = [];
+
+    // Looping through our intervals to generate a label with a colored square for each interval
+    for (var i = 0; i < magnitudes.length; i++) {
+        console.log(colors[i]);
+        div.innerHTML +=
+          "<i style='background: " + colors[i] + "'></i> " +
+          magnitudes[i] + (magnitudes[i + 1] ? "&ndash;" + magnitudes[i + 1] + "<br>" : "+");
+    }
+
+    return div;
+    };
+
+    legend.addTo(map);
+
 });
