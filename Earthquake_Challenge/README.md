@@ -2,5 +2,6 @@
 
 ![Major-Earthquakes](static/js/Major_earthquakes.png) 
 
+![Major_earthquakes_North_America](static/js/Major_earthquakes_North_America.png) 
 
-![Election-Analysis_output_in_text_file](Resources/Election-Analysis_output_in_text_file.png)
+![Earthquakes_North_America](static/js/Earthquakes_North_America.png) 
