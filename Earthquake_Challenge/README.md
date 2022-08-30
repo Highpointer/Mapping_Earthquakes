@@ -1,3 +1,5 @@
+# Mapping Earthquakes
+
 ![Major-Earthquakes](static/js/Major_earthquakes.png) 
 
 
