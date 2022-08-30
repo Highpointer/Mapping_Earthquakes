@@ -21,21 +21,15 @@ let baseMaps = {
     "Satellite": satelliteStreets
 };
 
-// 1. Add a 2nd layer group for the tectonic plate data.
-let allEarthquakes = new L.LayerGroup();
-
-// 2. Add a reference to the tectonic plates group to the overlays object.
-let overlays = {
-    "Earthquakes": allEarthquakes
-};
-
 // Create the earthquake layer for our map.
-// let earthquakes = new L.layerGroup();
+let techtonicPlates = new L.layerGroup();
+let allEarthquakes = new L.layerGroup();
 
 // We define an object that contains the overlays. This overlay will be visible all the time.
-// let overlays = {
-//     Earthquakes: earthquakes
-// };
+let overlays = {
+    "Techtonic Plates": techtonicPlates,
+    "Earthquakes": allEarthquakes
+};
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
@@ -52,14 +46,6 @@ let myStyle = {
     color: "#ffffa1",
     weight: 2
 }
-
-// Accessing the airport GeoJSON URL
-let airportData = "https://raw.githubusercontent.com/Highpointer/Mapping_Earthquakes/main/majorAirports.json";
-// Accessing the Toronto airline routes GeoJSON URL.
-let torontoData = "https://raw.githubusercontent.com/Highpointer/Mapping_Earthquakes/main/torontoRoutes.json";
-
-console.log("Airport Data", airportData);
-console.log("0. d3.json(airportData).then(function(data)", d3.json(airportData));
 
 // Retrieve the earthquake GeoJSON data
 // This function returns the style data for each of the earthquakes we plot on the map. 
@@ -118,10 +104,10 @@ L.geoJSON(data, {
     onEachFeature: function(feature, layer) {
         layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
       } 
-    }).addTo(earthquakes);
+    }).addTo(allEarthquakes);
 
     // Then we add the earthquake layer to our map
-    earthquakes.addTo(map);
+    allEarthquakes.addTo(map);
 
     // Custom Legend Control: https://leafletjs.com/examples/choropleth/
     let legend = L.control({position: 'bottomright'});
@@ -152,30 +138,23 @@ L.geoJSON(data, {
     return div;
     };
 
-    legend.addTo(map); // Add legend to the map
+    legend.addTo(map);
 
     // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
-    d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(() {
-    
-    });
+    d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function(plateData) {
+        L.geoJson(plateData, {
+            color: "#ff6500",
+            weight: 2
+          })
+        console.log("Add techtonic data");
+    }).addTo(techtonicPlates);
 
+    // Then we add the earthquake layer to our map 
+    techtonicPlates.addTo(map);
+    console.log("Techtonic data added");        
 });
 
-// delete this below: Retrieve the earthquake GeoJSON data.
-d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
-
-  // This function returns the style data for each of the earthquakes we plot on
-  // the map. We pass the magnitude of the earthquake into two separate functions
-  // to calculate the color and radius.
-  function styleInfo(feature) {
-    return {
-      opacity: 1,
-      fillOpacity: 1,
-      fillColor: getColor(feature.properties.mag),
-      color: "#000000",
-      radius: getRadius(feature.properties.mag),
-      stroke: true,
-      weight: 0.5
-    };
-  }
-});
+// Accessing the airport GeoJSON URL
+// let airportData = "https://raw.githubusercontent.com/Highpointer/Mapping_Earthquakes/main/majorAirports.json";
+// Accessing the Toronto airline routes GeoJSON URL.
+// let torontoData = "https://raw.githubusercontent.com/Highpointer/Mapping_Earthquakes/main/torontoRoutes.json";

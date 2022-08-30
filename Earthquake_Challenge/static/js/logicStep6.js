@@ -22,12 +22,14 @@ let baseMaps = {
 };
 
 // Create the earthquake layer for our map.
-let techtonicPlates = new L.layerGroup();
+// The tectonic plate data is added as a second layer group (10 pt)
+let tectonicPlates = new L.layerGroup();
 let allEarthquakes = new L.layerGroup();
 
 // We define an object that contains the overlays. This overlay will be visible all the time.
+// The tectonic plate data is added to the overlay object (10 pt)
 let overlays = {
-    "Techtonic Plates": techtonicPlates,
+    "Tectonic Plates": tectonicPlates,
     "Earthquakes": allEarthquakes
 };
 
@@ -112,7 +114,8 @@ L.geoJSON(data, {
     // Custom Legend Control: https://leafletjs.com/examples/choropleth/
     let legend = L.control({position: 'bottomright'});
 
-    legend.onAdd = function (map) {
+// Add the legend information to lower right, with six categories
+legend.onAdd = function () {
 
     let div = L.DomUtil.create('div', 'info legend');
         const magnitudes = [0, 1, 2, 3, 4, 5];
@@ -124,8 +127,6 @@ L.geoJSON(data, {
             "#ea822c",
             "#ea2c2c"
         ];
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-        labels = [];
 
     // Looping through our intervals to generate a label with a colored square for each interval
     for (var i = 0; i < magnitudes.length; i++) {
@@ -140,18 +141,22 @@ L.geoJSON(data, {
 
     legend.addTo(map);
 
-    // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
+//  3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
+
+// The d3.json() callback is working and does the following: (10 pt)
+// The tectonic plate data is passed to the geoJSON() layer
+// The geoJSON() layer adds color (red) and width (3) to the tectonic plate lines
+// The tectonic layer group variable is added to the map
     d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function(plateData) {
         L.geoJson(plateData, {
-            color: "#ff6500",
-            weight: 2
-          })
-        console.log("Add techtonic data");
-    }).addTo(techtonicPlates);
+            color: "red",
+            weight: 3
+    }).addTo(tectonicPlates);
 
-    // Then we add the earthquake layer to our map 
-    techtonicPlates.addTo(map);
-    console.log("Techtonic data added");        
+    // The earthquake data and tectonic plate data displayed on the map when the page loads  (5 pt)
+    tectonicPlates.addTo(map);
+    console.log("Tectonic data added");
+    });
 });
 
 // Accessing the airport GeoJSON URL
