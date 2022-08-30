@@ -8,4 +8,4 @@ Above is the map of earthquakes in North America. Highest concentrations are in 
 While there have been many earthquakes recorded in North America, filtering the earthquakes by selecting "major" earthquakes (mag. >= 4.5) shows that most of the earthquakes were less than 4.5 in magnitude. This map of North American shows only two "major" earthquakes, with the larger of the two (mag. 4.8) recorded in southern Mexico.
 ###  "Major" Earthquakes in Asia
 ![Major-Earthquakes](static/js/Major_earthquakes.png) 
-Reviewing the map of "major" earthquakes across the whole world, it appears that the highest concentration of such earthquakes have been recorded in eastern and southeastern Asia. The strongest earthquake (mag. 6.2) was recorded in Indonesia.
+Reviewing the map of "major" earthquakes across the whole world, it appears that the highest concentration of such earthquakes have been recorded in eastern Asia and Oceania. The strongest earthquake (mag. 6.2) was recorded off the southern coast of the Indonesian island of Sumatra. 
