@@ -6,7 +6,7 @@ Each earthquake is plotted using a circle that is proportional in size to the ma
 
 The default map layer is Mapbox Streets but the user can change the map layer to one of three additional options: Mapbox Satellite, Mapbox Outdoors, or Mapbox Dark. The selector for this is in the toggle box in the upper-right corner of the map.
 
-Overlaying the map in its default view is a map of the boundaries of techtonic plates. These plate boundaries are outlined in bright red. The tectonic plate boundaries are regions of highest seismic activity, so the user can see that most of the world's earthquakes are close to these plate boundaries. The user can turn off this layer by unselecting "Tectonic Plates" in the toggle box.
+Overlaying the map in its default view is a map of the boundaries of tectonic plates. These plate boundaries are outlined in bright red. The tectonic plate boundaries are regions of highest seismic activity, so the user can see that most of the world's earthquakes are close to these plate boundaries. The user can turn off this layer by unselecting "Tectonic Plates" in the toggle box.
 
 All of the earthquakes recorded and plotted are displayed in the default view. There is also a second layer of "major" earthquakes consisting of a subset of all of the earthquakes with magnitude of 4.5 or greater. Turning off the "all" earthquakes layer and leaving the "major" earthquakes view on the map enables one to more clearly discern where the strongest earthquakes have occurred. 
 
